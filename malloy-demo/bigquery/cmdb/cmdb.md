@@ -20,6 +20,7 @@ Example dashboard for cmdb data from BigQuery
 ```malloy
 query: cmdb-> {
   nest: num_unique_owners
+  nest: num_assets
   nest: asset_count_per_owner
 }
 ```
