@@ -1,0 +1,17 @@
+{
+  "readme": "composer.md",
+  "title": "FAA: Flights and More",
+  "models": [
+    {
+      "id": "faa",
+      "path": "flights.malloy",
+      "tables": [
+        "data/flights.parquet",
+        "data/carriers.parquet",
+        "data/airports.parquet",
+        "data/aircraft.parquet",
+        "data/aircraft_models.parquet"
+      ]
+    }
+  ]
+}

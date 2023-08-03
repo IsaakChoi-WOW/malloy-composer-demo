@@ -1,0 +1,11 @@
+{
+  "readme": "./composer.md",
+  "title": "Automobile Recalls",
+  "models": [
+    {
+      "id": "recalls",
+      "path": "auto_recalls.malloy",
+      "tables": ["auto_recalls.csv"]
+    }
+  ]
+}

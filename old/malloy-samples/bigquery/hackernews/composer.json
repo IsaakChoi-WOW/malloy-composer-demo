@@ -1,0 +1,10 @@
+{
+  "readme": "./hackernews.md",
+  "title": "Hacker New Posts",
+  "models": [
+    {
+      "id": "stories",
+      "path": "./hackernews.malloy"
+    }
+  ]
+}
