@@ -1,0 +1,13 @@
+{
+  "apps": [
+    {
+      "id": "cmbdassets",
+      "path": "./bigquery/hackernews/composer.json"
+    },
+    {
+      "id": "faa",
+      "path": "./bigquery/faa/composer.json"
+    }
+  ],
+  "readme": "./apps.md"
+}

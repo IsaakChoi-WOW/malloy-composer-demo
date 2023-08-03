@@ -1,0 +1,10 @@
+{
+  "readme": "./cmdb.md",
+  "title": "cmdb data",
+  "models": [
+    {
+      "id": "cmdb",
+      "path": "./cmdb.malloy"
+    }
+  ]
+}

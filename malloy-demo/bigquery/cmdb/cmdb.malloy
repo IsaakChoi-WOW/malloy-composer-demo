@@ -1,0 +1,62 @@
+--! styles cmdb.styles.json
+
+
+source: cmdb is table('gcp-wow-ent-cyber-sechub-prod.app_cmdbassets.mv_report_cmdbassets_applications_mapped_to_capabilities'){
+
+  measure:
+    total_unique_owners is count(distinct owned_by)
+    num_assets_owned is count()
+
+  query: num_unique_owners is {
+    aggregate:
+      total_unique_owners
+  }
+
+  query: asset_count_per_owner is {
+    // top: 25
+    order_by: num_assets_owned desc
+    group_by:
+      owned_by
+    aggregate:
+      num_assets_owned
+    // aggregate:
+    //   total_bottles
+    //   avg_price_per_100ml
+    //   percent_of_sales
+  }
+
+  // query: vendor_dashboard is {
+  //   group_by: vendor_count is count(distinct vendor_number)
+  //   aggregate:
+  //     total_sale_dollars
+  //     total_bottles
+  //   nest:
+  //     by_month
+  //     by_class
+  //     by_vendor_bar_chart
+  //     top_sellers_by_revenue
+  //     most_expensive_products
+  //     by_vendor_dashboard is {
+  //       top: 10
+  //       group_by: vendor_name
+  //       aggregate: total_sale_dollars
+  //       nest:
+  //         by_month,
+  //         top_sellers_by_revenue,
+  //         most_expensive_products
+  //    }
+  // }
+
+  // query: most_expensive_products is {
+  //   top: 10
+  //   order_by: avg_price_per_100ml desc
+  //   group_by:
+  //     vendor_name
+  //     item_description
+  //   aggregate:
+  //     total_sale_dollars
+  //     total_bottles
+  //     avg_price_per_100ml
+  // }
+  
+}

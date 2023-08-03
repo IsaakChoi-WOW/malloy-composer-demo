@@ -1,0 +1,46 @@
+-- --! styles vulnerabilities.styles.json
+
+source: vulnerabilities_table is table('gcp-wow-ent-cyber-sechub-prod.app_shared.tenable_vulnerabilities_dashboard') {
+
+    primary_key: `number`
+
+    measure: count_vulnerabilities is count()
+    measure: count_unique_vits is count(distinct `number`)
+    // measure: count_deferred_vits is count_unique_vits { where: dv_state = 'Deferred' }
+
+    dimension: vulnerability_category is `Type`
+    dimension: risk_rating is dv_risk_rating
+    dimension: is_closed is dv_state ?
+        pick 'Yes' when dv_state = 'Closed' | 'Cancelled' | 'Resolved'
+        else 'No'
+
+    // dimension: closed_month is
+    //     pick closed_at::date  when is_closed = 'Yes' and closed_at != null
+    //     pick last_found::date when is_closed = 'Yes'
+    //     else '2023-08-02'::date
+
+    dimension: business_criticality is dv_business_criticality
+    // dimension: has_exploit_available is exploitAvailable ?
+    //     pick 'Yes' when 'True' else 'No'
+
+    // # line_chart
+    // query: by_time_series_trend is {
+    //     group_by: closed_month
+    //     aggregate: count_unique_vits
+    //     // limit: 12
+    // }
+
+    query: by_importance is {
+        group_by: business_criticality, risk_rating, vulnerability_category
+        aggregate: count_unique_vits
+        // limit: 12
+    }
+
+    // # bar_chart
+    // query: by_tier_split_exploitable is {
+    //     group_by: business_criticality
+    //     group_by: has_exploit_available
+    //     aggregate: count_unique_vits
+    // }
+}
+

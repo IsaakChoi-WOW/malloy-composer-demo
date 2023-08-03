@@ -1,0 +1,10 @@
+{
+  "readme": "./iowa.md",
+  "title": "Iowa Liquor",
+  "models": [
+    {
+      "id": "iowa",
+      "path": "./iowa.malloy"
+    }
+  ]
+}

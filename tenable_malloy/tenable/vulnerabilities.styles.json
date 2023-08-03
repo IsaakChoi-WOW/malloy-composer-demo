@@ -1,0 +1,11 @@
+{
+    "by_time_series_trend": {
+        "renderer": "line_chart"
+    },
+    "by_importance": {
+        "renderer": "bar_chart"
+    },
+    "by_tier_split_exploitable": {
+        "renderer": "bar_chart"
+    }
+}

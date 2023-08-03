@@ -1,0 +1,10 @@
+{
+  "readme": "./faa.md",
+  "title": "FAA: Flights and More",
+  "models": [
+    {
+      "id": "faa",
+      "path": "./flights.malloy"
+    }
+  ]
+}

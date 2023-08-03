@@ -16,3 +16,6 @@ third_party/github.com/atom/
 .env.local
 .env.development.local
 .env.test.local
+
+# composer binary
+composer 
