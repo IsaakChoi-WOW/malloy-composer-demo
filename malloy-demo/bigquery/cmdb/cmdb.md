@@ -22,5 +22,6 @@ query: cmdb-> {
   nest: num_assets
   nest: num_unique_owners
   nest: asset_count_per_owner
+  nest: level_distribution_bar_chart
 }
 ```

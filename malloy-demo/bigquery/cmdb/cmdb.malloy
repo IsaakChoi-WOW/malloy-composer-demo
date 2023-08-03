@@ -7,6 +7,7 @@ source: cmdb is table('gcp-wow-ent-cyber-sechub-prod.app_cmdbassets.mv_report_cm
     total_unique_owners is count(distinct owned_by)
     total_assets is count()
     num_assets_owned is count()
+    actual_level_count is count()
 
   query: num_unique_owners is {
     aggregate:
@@ -16,6 +17,12 @@ source: cmdb is table('gcp-wow-ent-cyber-sechub-prod.app_cmdbassets.mv_report_cm
   query: num_assets is {
     aggregate:
       total_assets
+  }
+
+  query: level_distribution_bar_chart is {
+    group_by: actual_level
+    aggregate:
+      actual_level_count
   }
 
   query: asset_count_per_owner is {
