@@ -1,8 +1,39 @@
+# Demo Dashboard Cyber Analytics
+You will need to log into Google Cloud to use these datasets.  Use the following
+commands to log into Google Cloud.
+
+```
+gcloud auth login --update-adc
+gcloud config set project {my_project_id} --installation
+```
+
+<!-- malloy-app 
+  app="cmdb" 
+  name="CMDB Data" 
+  description="Example use of Malloy Composer using the CMDB datasets from BigQuery" 
+-->
+
+
 # Malloy example datasets
 These examples at designed to be used with [Malloy](http://www.malloydata.dev), a semantic modeling and querying data language. 
 
 A good way to undertand [Malloy](http://www.malloydata.dev) is to load some of these examples and
 play with them.  **[Source code for these examples](https://github.com/malloydata/malloy-samples)** can be found on github.
+
+
+<!-- malloy-app 
+  app="hackernews" 
+  name="Hacker News" 
+  description="Posts from news.ycombinator.com" 
+-->
+
+<!-- malloy-app 
+  app="iowa" 
+  name="Iowa Liquor Store Purchases" 
+  description="Public data from state owned Iowa Liquor Stores" 
+-->
+
+
 
 
 ### DuckDB datasets
@@ -32,32 +63,5 @@ and the [Malloy VSCode](https://marketplace.visualstudio.com/items?itemName=mall
   app="recalls" 
   name="Automobile Recalls" 
   description="Public data from data.gov on automobile recalls" 
--->
-
-### BigQuery datasets
-You will need to log into Google Cloud to use these datasets.  Use the following
-commands to log into Google Cloud.
-
-```
-gcloud auth login --update-adc
-gcloud config set project {my_project_id} --installation
-```
-
-<!-- malloy-app 
-  app="cmdb" 
-  name="CMDB Data" 
-  description="Example use of Malloy Composer using the CMDB datasets from BigQuery" 
--->
-
-<!-- malloy-app 
-  app="hackernews" 
-  name="Hacker News" 
-  description="Posts from news.ycombinator.com" 
--->
-
-<!-- malloy-app 
-  app="iowa" 
-  name="Iowa Liquor Store Purchases" 
-  description="Public data from state owned Iowa Liquor Stores" 
 -->
 

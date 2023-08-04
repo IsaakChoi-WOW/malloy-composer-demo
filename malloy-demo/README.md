@@ -4,11 +4,11 @@ These Malloy model examples are designed to be used with [Malloy](https://www.ma
 a semantic modeling and querying data language. You can download the latest samples from
 [releases](https://github.com/malloydata/malloy-samples/releases/latest/).
 
-## [Google BigQuery](bigquery)
+## [Google BigQuery](source_bigquery)
 
 These examples require a [Google Cloud](https://cloud.google.com) login.
 
-## [DuckDB](duckdb)
+## [DuckDB](source_duckdb)
 
 These examples use [DuckDB](https://duckdb.org/) to read local data files.
 Datasets are included or can be easily downloaded and do not require a login.

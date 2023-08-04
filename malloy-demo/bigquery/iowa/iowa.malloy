@@ -114,7 +114,7 @@ source: iowa is table('malloy-data.iowa_liquor_sales.sales_deduped'){
           by_month,
           top_sellers_by_revenue,
           most_expensive_products
-     }
+    }
   }
 }
 

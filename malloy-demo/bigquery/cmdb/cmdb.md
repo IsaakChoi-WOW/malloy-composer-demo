@@ -1,4 +1,7 @@
+<!-- ![alt text](download.jpeg) -->
+
 # CMDB Data
+
 Simple demonstration of Malloy Composer using cmdb data from the `mv_report_cmdbassets_applications_mapped_to_capabilities` dataset hosted on BigQuery.
 
 ## What is this?
@@ -19,8 +22,8 @@ Example dashboard for cmdb data from BigQuery
 -->
 ```malloy
 query: cmdb-> {
-  nest: total_assets
-  nest: total_unique_owners
+  nest: count_assets
+  nest: count_unique_owners
   nest: asset_count_per_owner
   nest: level_distribution_bar_chart
 }

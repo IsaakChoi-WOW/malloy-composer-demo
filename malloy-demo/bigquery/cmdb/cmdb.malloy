@@ -2,67 +2,65 @@
 
 
 source: cmdb is table('gcp-wow-ent-cyber-sechub-prod.app_cmdbassets.mv_report_cmdbassets_applications_mapped_to_capabilities'){
-
+  primary_key: sys_id
   measure:
-    total_unique_owners is count(distinct owned_by)
-    total_assets is count()
-    num_assets_owned is count()
-    num_assets_managed is count() {where: gm_domain != null}
-    actual_level_count is count()
-    total_assets_with_null_gm is count() {where: gm_domain = null}
-    total_unique_gms is count(distinct gm_domain)
-    asset_source_count is count()
+    count_assets is count()
+    count_unique_owners is count(distinct owned_by)
+    count_assets_managed is count() {where: gm_domain != null}
+    count_assets_with_null_gm is count() {where: gm_domain = null}
+    count_domains is count(distinct gm_domain)
+    
     asset_capability_count is count()
-    asset_operational_status_count is count()
 
   query: level_distribution_bar_chart is {
     group_by: actual_level
     aggregate:
-      actual_level_count
+      count_assets
   }
 
-  query: asset_operational_status_bar_chart is {
-    group_by: operational_status
+  query: organisational_domain_bar_chart is {
+    group_by: organisational_domain
     aggregate:
-      asset_operational_status_count
+      count_assets
   }
 
-  query: asset_source_distribution_bar_chart is {
-    group_by: source
+  query: business_application_distribution_bar_chart is {
+    top: 10
+    group_by: business_application_name
     aggregate:
-      asset_source_count
+      count_assets
   }
 
   query: asset_capability_distribution_bar_chart is {
     top: 15
     group_by: capability
     aggregate:
-      asset_capability_count
+      count_assets
   }
 
   query: asset_count_per_owner is {
     top: 10
-    order_by: num_assets_owned desc
+    order_by: count_assets desc
     group_by:
       owned_by
     aggregate:
-      num_assets_owned
+      count_assets
   }  
 
   query: gm_assets_managed is {
     top: 10
-    order_by: num_assets_managed desc
+    order_by: count_assets_managed desc
     group_by:
       gm_domain
     aggregate:
-      num_assets_managed
+      count_assets_managed
   }
 
   query: gm_dashbaord is {
     aggregate: 
-      total_unique_gms
-      total_assets
-      total_assets_with_null_gm
+      count_domains
+      count_assets
+      count_assets_with_null_gm
     nest: 
       gm_assets_managed
     nest:
@@ -71,13 +69,13 @@ source: cmdb is table('gcp-wow-ent-cyber-sechub-prod.app_cmdbassets.mv_report_cm
         group_by: 
           gm_domain
         aggregate: 
-          num_assets_managed
+          count_assets_managed
         nest: 
-          asset_source_distribution_bar_chart
+          organisational_domain_bar_chart
         nest:
           asset_capability_distribution_bar_chart
         nest:
-          asset_operational_status_bar_chart
+          business_application_distribution_bar_chart
       }
   }
 }
