@@ -1,4 +1,8 @@
 {
+  "gm_dashboard": {
+    "renderer": "dashboard"
+  },
+
   "by_category": {
     "renderer": "bar_chart"
   },  

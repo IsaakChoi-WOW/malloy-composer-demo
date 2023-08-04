@@ -7,22 +7,37 @@ source: cmdb is table('gcp-wow-ent-cyber-sechub-prod.app_cmdbassets.mv_report_cm
     total_unique_owners is count(distinct owned_by)
     total_assets is count()
     num_assets_owned is count()
+    num_assets_managed is count() {where: gm_domain != null}
     actual_level_count is count()
-
-  query: num_unique_owners is {
-    aggregate:
-      total_unique_owners
-  }
-
-  query: num_assets is {
-    aggregate:
-      total_assets
-  }
+    total_assets_with_null_gm is count() {where: gm_domain = null}
+    total_unique_gms is count(distinct gm_domain)
+    asset_source_count is count()
+    asset_capability_count is count()
+    asset_operational_status_count is count()
 
   query: level_distribution_bar_chart is {
     group_by: actual_level
     aggregate:
       actual_level_count
+  }
+
+  query: asset_operational_status_bar_chart is {
+    group_by: operational_status
+    aggregate:
+      asset_operational_status_count
+  }
+
+  query: asset_source_distribution_bar_chart is {
+    group_by: source
+    aggregate:
+      asset_source_count
+  }
+
+  query: asset_capability_distribution_bar_chart is {
+    top: 15
+    group_by: capability
+    aggregate:
+      asset_capability_count
   }
 
   query: asset_count_per_owner is {
@@ -33,4 +48,36 @@ source: cmdb is table('gcp-wow-ent-cyber-sechub-prod.app_cmdbassets.mv_report_cm
     aggregate:
       num_assets_owned
   }  
+
+  query: gm_assets_managed is {
+    top: 10
+    order_by: num_assets_managed desc
+    group_by:
+      gm_domain
+    aggregate:
+      num_assets_managed
+  }
+
+  query: gm_dashbaord is {
+    aggregate: 
+      total_unique_gms
+      total_assets
+      total_assets_with_null_gm
+    nest: 
+      gm_assets_managed
+    nest:
+      by_gm_dashboard is {
+        top: 10
+        group_by: 
+          gm_domain
+        aggregate: 
+          num_assets_managed
+        nest: 
+          asset_source_distribution_bar_chart
+        nest:
+          asset_capability_distribution_bar_chart
+        nest:
+          asset_operational_status_bar_chart
+      }
+  }
 }
