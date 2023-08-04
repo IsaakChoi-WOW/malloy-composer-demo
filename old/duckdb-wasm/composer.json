@@ -1,9 +1,0 @@
-{
-  "apps": [
-    {
-      "id": "faa",
-      "path": "./flights_composer.json"
-    }
-  ],
-  "readme": "./apps.md"
-}

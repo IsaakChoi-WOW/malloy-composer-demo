@@ -1,1 +1,0 @@
-# NO MODEL FUN
